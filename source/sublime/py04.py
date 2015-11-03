@@ -3,6 +3,8 @@
 #
 # Dict & set
 #
+# Help(dict)  查看帮助
+#
 
 
 d = {'Michael': 95, 'Bob': 75, 'Tracy': 85}
@@ -38,3 +40,4 @@ s1 = set([1, 2, 3, 4])
 s2 = set([3, 4, 5, 6])
 print(s1&s2)
 
+help(dict)
