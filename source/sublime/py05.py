@@ -38,7 +38,7 @@ def my_abs_n(x):
 	else:
 		return -x
 print(my_abs_n(-9))
-print('a')
+print('as')
 print((1, 4))
 
 
