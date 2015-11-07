@@ -135,8 +135,5 @@ print('\n---------------------------\n Sourted Test\n')
 
 showhelp(sorted)
 
-print(sorted([36, 5, 1, 89, 7]))
-
-L = [36, 5, -12, 9]
-# sorted(L, key = abs)
+print(sorted([36, -5, 1, 89, -7], key = abs))
 
