@@ -105,12 +105,13 @@ showhelp(filter)
 p = filter(lambda x : x % 2 == 1, [1, 2, 3, 4, 5, 6, 7, 8, 9])
 print(p)
 
-
+# 
 # 去除序列中的空字符串
 # 
 # s.strip(rm)	删除s字符串中开头、结尾处，位于rm删除序列的字符
 # s.lstrip(rm)	删除s字符串中开头处，位于删除序列的字符
 # s.rstrip(rm)	删除s字符串中结尾处，位于删除序列的字符
+# 
 
 def not_empty(s):
 	return s and s.strip()
@@ -128,6 +129,8 @@ print(list(filter(not_empty, ['A', '', 'B', None, 'C', ''])))
 # Sorted
 # 
 # 排序
+# 
+# warning key排序属性没法使用
 # 
 # 
 
