@@ -45,7 +45,14 @@ if __name__ == '__main__':
 	bart.print_score()
 	lisa.print_score()
 
+	bart.age = 26
+	print(bart.age)
+
 	print(bart.get_grade())
 	print(lisa.get_grade())
 
 	print(max_i(7))
+
+
+
+
