@@ -89,14 +89,15 @@ class Student3(object):
 	def __init__(self, name):
 		self.name = name
 
-	def __call__(self):
-		print('My name is %s.' % self.name)
+	def __call__(self, hel):
+		print('My name is %s. %s' % (self.name, hel))
 
 s3 = Student3('Michael')
-print(s3())
+print(s3('hello'))
 
 
-
+print(callable(Student3('h')))
+print(callable('123'))
 
 
 
