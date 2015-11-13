@@ -109,9 +109,7 @@ class Identify(object):
 
 	@property
 	def area(self):
-	    return place_with_code(self.place_code)
-	
-	
+	    return place.place_with_code(self.place_code)
 	
 	def __str__(self):
 		if self.legitimate:
@@ -119,8 +117,6 @@ class Identify(object):
 		else:
 			return '非法身份证号'
 	
-
-
 if __name__ == '__main__':
 	identity = Identify('41152619910828351')
 	print(identity.place_code)
@@ -129,7 +125,7 @@ if __name__ == '__main__':
 	print(identity.birth_day)
 	print('gender', identity.gender)
 	print(identity)
-	print(self.area)
+	print(identity.area)
 
 
 

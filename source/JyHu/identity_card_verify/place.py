@@ -11,6 +11,7 @@ __author__ = 'JyHu'
 import json
 
 def place_with_code(code):
+	print('code : %s' % code)
 	pcode = ''
 	if isinstance(code, int):
 		pcode = str(code)
@@ -31,4 +32,4 @@ def place_with_code(code):
 			return (v1, v2, v3)
 	return ()
 
-print place_with_code('411526')
+# print place_with_code('411526')
