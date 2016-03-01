@@ -9,8 +9,6 @@
 
 
 from math import pow
-import thread
-import threading
 
 
 
@@ -29,37 +27,24 @@ for i in range(1000, 10000):
 	for j in range(0, len(L)):
 		n = int(L[j])
 		summ += pow(n, 4)
+		# print '%d - %d- %d - %d' % (i, n, pow(n, 3), summ)
 	if summ == i:
 		print i
 
 
-class perf_number(threading.Thread):
-	def __init__(self, po):
-		threading.Thread.__init__(self)
-		self.po = po
-
-	def run(self):
-		self.perf(self.po)
-
-	def perf(po):
-		print po
-		for num in range(int(pow(10, po - 1)), int(pow(10, po))):
-			summ = 0
-			for j in range(0, po):
-				summ += pow(int(list(str(num))[j]), po)
-			if summ == num:
-				print num
-
-perf_number(6).start()
-
-# perf(3)
-# perf(4)
-# perf(5)
-# perf(6)
+# 扩展一下，可以计算类似的值，观察了一下规律，如果要3次方相加的话，必须是3位数，如果4次方的话，必须4位数，以此类推
+# po：数字的位数
+def perf(po):
+	for num in range(int(pow(10, po - 1)), int(pow(10, po))):
+		summ = 0
+		for j in range(0, po):
+			summ += pow(int(list(str(num))[j]), po)
+		if summ == num:
+			print num
 
 
 
-
-
-
+perf(3)
+perf(4)
+perf(5)
 
