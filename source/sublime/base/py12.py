@@ -12,7 +12,7 @@ from h import showhelp
 
 print('\n---------------------------\n Map Test\n')
 
-showhelp(map)
+# showhelp(map)
 
 
 # 
@@ -36,7 +36,26 @@ def add (x, y, fun):
 	return fun(x) + fun(y)
 print(add(-5, -6, f))
 
+    
+'''
 
+      /\
+     /  \
+     \   \
+      \   \
+  /\   \   \
+ /  \   \   \
+ \   \  /    \
+  \   \/      \
+   \      /\   \
+    \    /  \  /
+     \   \   \/
+      \   \   
+       \   \ 
+        \  /
+         \/
+
+'''
 
 # 将数字转换成字符
 
@@ -51,7 +70,7 @@ print(list(map(str, [1,2,3,4,5,6,7,8])))
 
 print('\n---------------------------\n Reduce Test\n')
 
-showhelp(reduce)
+# showhelp(reduce)
 
 # 
 # 
@@ -96,12 +115,15 @@ print(str2int('1234') * 2)
 
 print('\n---------------------------\n Filter Test\n')
 
-showhelp(filter)
+# showhelp(filter)
 
 # 去除偶数
 # True 保留
 # False 删除
 
+
+
+# p = filter(lambda x : x % 2 == 1, [1, 2, 3, 4, 5, 6, 7, 8, 9])
 p = filter(lambda x : x % 2 == 1, [1, 2, 3, 4, 5, 6, 7, 8, 9])
 print(p)
 
@@ -118,8 +140,10 @@ def not_empty(s):
 print(list(filter(not_empty, ['A', '', 'B', None, 'C', ''])))
 
 
-
-
+print '=-=-=-=-=-=-=-=-=-=-===-=-=-=-=-='
+def madd(x, y):
+	return x + y
+print reduce(madd, range(101))
 
 
 
