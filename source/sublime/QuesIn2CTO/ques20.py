@@ -10,18 +10,15 @@
 
 
 def halfCount(hight, num):
-	msum = 0
+	if num == 1 : return hight
 	def tempFunc(tempHight, tempNum):
-		if tempNum > 0 :
-			msum += tempFunc(tempHight / 2.0, tempNum - 1) * 2 + tempHight
-			return msum
-		else:
-			return 0
+		if tempNum > 1 :
+			tempSum = tempFunc(tempHight / 2.0, tempNum - 1) * 2
+			print tempSum
+			return tempSum
+		return tempHight
 	return tempFunc(hight, num)
-
 print halfCount(100, 3)
-
-
 
 
 
@@ -33,8 +30,7 @@ def halfCount1(hight, num):
 		hig /= 2.0
 		nsum += hig * 2
 	return nsum
-
-print halfCount1(100, 10)
+print halfCount1(100, 3)
 
 
 
