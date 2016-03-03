@@ -19,8 +19,6 @@ class RhombusType:
 	type1 = 1 << 0	# 样式1
 	type2 = 1 << 1	# 样式2
 	type3 = 1 << 2	# 样式3
-	type4 = 1 << 3
-	type5 = 1 << 4
 	typeF = 1 << 8	# 添加外框，不能单独使用，必须跟前面的类型一起使用
 
 # n : 字符的个数
