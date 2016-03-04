@@ -24,6 +24,7 @@
 
 
 def jumpHight(height, num):
+	jcount = 0
 	def halfHeight(ht, nm):
 		print "   -   " * 10
 		if nm > 0:
@@ -31,7 +32,6 @@ def jumpHight(height, num):
 			halfHeight(ht/2.0, nm-1)
 		else: return
 	halfHeight(height, num)
-	jcount = 0
 	return jcount
 print jumpHight(100, 10)
 

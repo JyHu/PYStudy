@@ -13,4 +13,4 @@ def reverse(tstr = 'Hello World'):
 	print tstr[-1:]
 	reverse(tstr[0:len(tstr) - 1])
 
-reverse('a')
+reverse(raw_input('please input a string :\n'))
