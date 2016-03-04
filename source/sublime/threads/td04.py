@@ -1,9 +1,8 @@
 #coding:utf-8
 
+
 import threading
 import time
-
-exitFlag = 0
 
 class myThread(threading.Thread):
 	def __init__(self, threadID, name, delay):
@@ -13,27 +12,30 @@ class myThread(threading.Thread):
 		self.delay = delay
 	def run(self):
 		print 'Starting ' + self.name
-		print_time(self.name, self.delay, 5)
-		print 'Exiting ' + self.name
+		threadLock.acquire()
+		print_time(self.name, self.delay, 3)
+		threadLock.release()
+
 def print_time(threadName, delay, counter):
-	while  counter:
-		if exitFlag:
-			thread.exit()
+	while counter:
 		time.sleep(delay)
 		print '%s : %s' % (threadName, time.ctime(time.time()))
 		counter -= 1
 
+threadLock = threading.Lock()
+threads = []
 
 
 thread1 = myThread(1, 'Thread-1', 1)
 thread2 = myThread(2, 'Thread-2', 2)
 
 thread1.start()
-thread2.run()
+thread2.start()
 
+threads.append(thread1)
+threads.append(thread2)
 
-
-while thread2.isAlive():
-	if not thread1.isAlive():
-		exitFlag = 1
-print 'Exiting main thread'
+for t in threads:
+	if t.isAlive():
+		t.join()
+print 'Exiting Main Thread'
