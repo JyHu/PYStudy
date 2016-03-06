@@ -29,3 +29,5 @@ print('Hi, %s , you have $%s' % ('Michael', 10000))
 print('%3d ~ %03d' % (2, 6))
 
 print('%06.2f' % 3.14159)
+
+print 'Im ' + repr(25) + ' years old'
