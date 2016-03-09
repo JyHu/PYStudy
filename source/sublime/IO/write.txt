@@ -1,1 +1,2 @@
-write text test
+line 4line 5line 6
+line 7
