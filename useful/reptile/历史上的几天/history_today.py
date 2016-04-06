@@ -38,7 +38,7 @@ def save_today_news(today_info, folder_path):
 		text = re.sub(r'<.*?>', '', detail_list[0])
 		text = re.sub(r'(BR|br)', '\n', text)
 		if len(text) > 0:
-			with open("%s/%s.txt" % (folder_path, today_info[1].strip()), 'w') as f:
+			with open(folder_path, 'w') as f:
 				f.write(text)
 
 		else:
@@ -49,7 +49,7 @@ def save_today_news(today_info, folder_path):
 def collect_history_today_news():
 	make_folder(root_folder)
 	ht_count = 0
-	for month in range(11, 13):
+	for month in range(1, 13):
 		make_folder("%s/%02d" % (root_folder, month))
 		for day in range(1, 32):
 			folder_name = "%s/%02d/%02d" % (root_folder, month, day)
@@ -62,10 +62,17 @@ def collect_history_today_news():
 				f.write("\n")
 			if len(news_list) > 0:
 				for today_new in news_list:
-					print "已经抓取到%04d条内容，正在抓取%02d月%02d日的内容：%s" % (ht_count, month, day, today_new[1])
-					with open("history_today_log.txt", 'a') as f: f.write("%s\n" % today_new[1])
-					save_today_news(today_new, folder_name)
-					ht_count = ht_count + 1
+					jfilepath = "%s/%s.txt" % (folder_name, today_new[1].strip())
+					try:
+						if not os.path.exists(jfilepath):
+							print "已经抓取到%04d条内容，正在抓取%02d月%02d日的内容：%s" % (ht_count, month, day, today_new[1])
+							with open("history_today_log.txt", 'a') as f: f.write("%s\n" % today_new[1])
+							save_today_news(today_new, jfilepath)
+							ht_count = ht_count + 1
+						else:
+							print "%s 文件已经存在" % jfilepath
+					except Exception, e:
+						print e
 			elif day > 28: break
 
 
