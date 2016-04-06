@@ -1,32 +1,20 @@
 # coding:utf-8
 # auth:JyHu
 
-
-from urllib import urlopen
-import re
 import sys
-import os
+sys.path.append('../..')
+from abstract import *
 
 baseURL = "http://ds.eywedu.com/law/"
 
 # 法律地址的数据源
 urls = 	{
-			# "xf" : "宪法",
-			# "xingfa" : "刑法",
+			"xf" : "宪法",
+			"xingfa" : "刑法",
 			"msf" : "民商法",
 			"ssf" : "诉讼法",
-			# "xzf" : "行政法"
+			"xzf" : "行政法"
 		}
-
-# 抓取网页中的数据，并根据正则表达式返回匹配的结果
-# page_url	页面地址
-# re_pat	正则表达式
-def load_web_page(page_url, re_pat):
-	webpage = urlopen(page_url)
-	text = webpage.read()
-	syscode = sys.getfilesystemencoding()
-	text = text.decode('gb2312', 'ignore').encode(syscode)
-	return re.compile(re_pat).findall(text)
 
 # 抓取法律的具体内容
 # law_url	法律地址
@@ -34,17 +22,14 @@ def load_web_page(page_url, re_pat):
 def catch_law_detail(law_url, law_name):
 	res = load_web_page(law_url, "<(FONT|font)\\s+class=.*?id=zoom>([\\s\\S.]*?)</font>")
 	if len(res) >= 1 and len(res[0]) >= 2:
-		text = res[0][1]	# 取第一个分组中抓取到的具体内容
-		text = re.sub(r'<(BR|br)>', '\n', text)	# 替换html中的br换行符
-		text = re.sub(r'<.*?>', '', text)		# 替换穿插在法律内容中的html标签对
-		text = re.sub(r'&nbsp;', '', text)		# 替换html中的空白字符
-		if len(text.strip()) > 0:		# 去掉空白字符，然后判断是否有效
+		text = replace_white_space(res[0][1])
+		if len(text) > 0:		# 去掉空白字符，然后判断是否有效
 			with open(law_name, 'w') as f:
 				f.write(text)			# 写入到具体目录中
 		else: 
-			print "\n\n", "*" * 70, "\n" "抓取到了空的内容", "\n", "地址是:", law_url, "*" * 70, "\n"
+			error_message("抓取到了空的内容，地址是：%s" % law_url)
 	else:
-		print "\n\n", "*" * 70, "\n" "抓取到了空的内容", "\n", "地址是:", law_url, "\n", "*" * 70, "\n"
+		error_message("抓取到了空的内容，地址是：%s" % law_url)
 
 def collect_pages():
 
@@ -52,12 +37,11 @@ def collect_pages():
 	total_count = 0
 
 	for law,folderName in urls.items():
-		try: os.mkdir(folderName)	# 创建一个法律的目录
-		except Exception, e: print e
+		make_folder(folderName)	
 
 		page = 1		# 如果有下一页的话，累加去抓取下一页的内容
-		cur_count = 1
-		cur_total = 0
+		cur_count = 1	# 当前分类下已经抓取到的个数
+		cur_total = 0	# 当前分类下总共的个数
 
 		while True:
 			# 抓取网页中法律的列表
